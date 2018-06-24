@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { SafeAreaView, View } from "react-native";
 import { Input, Header, Text, ListItem } from "react-native-elements";
-import * as firebase from "firebase";
+import firebase from "firebase";
 import "firebase/firestore";
 const config = require("./firebase-config.json");
 
@@ -49,13 +49,10 @@ export default class App extends Component {
     };
   }
 
-  async componentDidMount() {
-    db
-      .collection("tasks")
-      .get()
-      .then(snapshot => {
-        this.setState({ tasks: snapshot.docs.map(d => d.data()) });
-      });
+  componentDidMount() {
+    db.collection("tasks").onSnapshot(snapshot => {
+      this.setState({ tasks: snapshot.docs.map(d => d.data()) });
+    });
   }
 
   render() {
