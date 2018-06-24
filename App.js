@@ -50,12 +50,12 @@ export default class App extends Component {
   }
 
   async componentDidMount() {
-    let tasks = [];
-    const snapshot = await db.collection("tasks").get();
-    snapshot.forEach(doc => {
-      tasks.push(doc.data());
-    });
-    this.setState({ tasks: tasks });
+    db
+      .collection("tasks")
+      .get()
+      .then(snapshot => {
+        this.setState({ tasks: snapshot.docs.map(d => d.data()) });
+      });
   }
 
   render() {
