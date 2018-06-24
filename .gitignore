@@ -20,3 +20,6 @@ yarn-error.log*
 .watchmanconfig
 
 package-lock.json
+data.js
+education-tracker-firebase-adminsdk-fabnn-b563ded57f.json
+firebase-config.json
