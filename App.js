@@ -6,7 +6,8 @@ import {
   View,
   Navigator,
   List,
-  Icon
+  Icon,
+  StatusBar
 } from "react-native";
 import { createBottomTabNavigator } from "react-navigation";
 import {
@@ -40,7 +41,7 @@ class TaskList extends Component {
       youtube_playlist: { name: "video-library", color: "#FF0000" }
     };
     return (
-      <View style={{ padding: 10 }}>
+      <View>
         {this.props.tasks.map((item, i) => {
           return (
             <ListItem
@@ -75,17 +76,16 @@ class LearningDashboard extends React.Component {
 
   render() {
     return (
-      <View>
+      <SafeAreaView>
         <Header
           outerContainerStyles={{ backgroundColor: "#3D6DCC" }}
           centerComponent={{
             text: "Overview",
             style: styles.centerHeader
           }}
-          rightComponent={{ icon: "home", color: "#fff" }}
         />
         <TaskList tasks={this.state.tasks} />
-      </View>
+      </SafeAreaView>
     );
   }
 }
@@ -94,7 +94,13 @@ class Projects extends React.Component {
   render() {
     return (
       <SafeAreaView>
-        <Text>Projects</Text>
+        <Header
+          outerContainerStyles={{ backgroundColor: "#3D6DCC" }}
+          centerComponent={{
+            text: "Projects",
+            style: styles.centerHeader
+          }}
+        />
       </SafeAreaView>
     );
   }
@@ -104,7 +110,13 @@ class Search extends React.Component {
   render() {
     return (
       <SafeAreaView>
-        <Text>Search</Text>
+        <Header
+          outerContainerStyles={{ backgroundColor: "#3D6DCC" }}
+          centerComponent={{
+            text: "Search",
+            style: styles.centerHeader
+          }}
+        />
       </SafeAreaView>
     );
   }
@@ -114,17 +126,29 @@ class SocialFeed extends React.Component {
   render() {
     return (
       <SafeAreaView>
-        <Text>SocialFeed</Text>
+        <Header
+          outerContainerStyles={{ backgroundColor: "#3D6DCC" }}
+          centerComponent={{
+            text: "Social",
+            style: styles.centerHeader
+          }}
+        />
       </SafeAreaView>
     );
   }
 }
 
-class Profile extends React.Component {
+class Account extends React.Component {
   render() {
     return (
       <SafeAreaView>
-        <Text>Profile</Text>
+        <Header
+          outerContainerStyles={{ backgroundColor: "#3D6DCC" }}
+          centerComponent={{
+            text: "Account",
+            style: styles.centerHeader
+          }}
+        />
       </SafeAreaView>
     );
   }
@@ -134,9 +158,9 @@ const Tabs = createBottomTabNavigator(
   {
     Learning: LearningDashboard,
     Projects: Projects,
-    Search: Search,
     Social: SocialFeed,
-    Profile: Profile
+    Search: Search,
+    Account: Account
   },
   {
     navigationOptions: ({ navigation }) => ({
@@ -145,9 +169,9 @@ const Tabs = createBottomTabNavigator(
         const footerIconsMap = {
           Learning: "md-list",
           Projects: "md-bulb",
-          Search: "md-search",
           Social: "logo-rss",
-          Profile: "md-person"
+          Search: "md-search",
+          Account: "md-person"
         };
 
         // You can return any component that you like here! We usually use an
@@ -188,5 +212,5 @@ const styles = StyleSheet.create({
     borderRadius: 100,
     margin: 13
   },
-  centerHeader: { color: "#fff", height: 80 }
+  centerHeader: { color: "#fff", fontSize: 23 }
 });
