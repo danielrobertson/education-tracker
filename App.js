@@ -47,7 +47,10 @@ export default class App extends Component {
         }),
         tabBarOptions: {
           activeTintColor: "black",
-          inactiveTintColor: "gray"
+          inactiveTintColor: "gray",
+          style: {
+            paddingTop: 10
+          }
         }
       }
     );
