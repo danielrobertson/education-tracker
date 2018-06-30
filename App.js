@@ -1,6 +1,22 @@
 import React, { Component } from "react";
-import { SafeAreaView, View } from "react-native";
-import { Input, Header, Text, ListItem } from "react-native-elements";
+import { Ionicons } from "react-native-vector-icons";
+import {
+  StyleSheet,
+  SafeAreaView,
+  View,
+  Navigator,
+  List,
+  Icon
+} from "react-native";
+import { createBottomTabNavigator } from "react-navigation";
+import {
+  TouchableOpacity,
+  Input,
+  Header,
+  Text,
+  ListItem,
+  Button
+} from "react-native-elements";
 import firebase from "firebase";
 import "firebase/firestore";
 const config = require("./firebase-config.json");
@@ -10,6 +26,7 @@ const db = firebase.firestore();
 const settings = { timestampsInSnapshots: true };
 db.settings(settings);
 
+// Renders a list of education tasks
 class TaskList extends Component {
   constructor(props) {
     super(props);
@@ -24,8 +41,6 @@ class TaskList extends Component {
     };
     return (
       <View style={{ padding: 10 }}>
-        <Text h2>Overview</Text>
-
         {this.props.tasks.map((item, i) => {
           return (
             <ListItem
@@ -36,12 +51,14 @@ class TaskList extends Component {
             />
           );
         })}
+
+        <Button title="New" buttonStyle={styles.newItemBtn} />
       </View>
     );
   }
 }
 
-export default class App extends Component {
+class LearningDashboard extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -50,6 +67,7 @@ export default class App extends Component {
   }
 
   componentDidMount() {
+    // initialize data and update on change
     db.collection("tasks").onSnapshot(snapshot => {
       this.setState({ tasks: snapshot.docs.map(d => d.data()) });
     });
@@ -57,17 +75,118 @@ export default class App extends Component {
 
   render() {
     return (
-      <SafeAreaView>
+      <View>
         <Header
-          leftComponent={{ icon: "menu", color: "#fff" }}
+          outerContainerStyles={{ backgroundColor: "#3D6DCC" }}
           centerComponent={{
-            text: "Education Tracker",
-            style: { color: "#fff" }
+            text: "Overview",
+            style: styles.centerHeader
           }}
           rightComponent={{ icon: "home", color: "#fff" }}
         />
         <TaskList tasks={this.state.tasks} />
+      </View>
+    );
+  }
+}
+
+class Projects extends React.Component {
+  render() {
+    return (
+      <SafeAreaView>
+        <Text>Projects</Text>
       </SafeAreaView>
     );
   }
 }
+
+class Search extends React.Component {
+  render() {
+    return (
+      <SafeAreaView>
+        <Text>Search</Text>
+      </SafeAreaView>
+    );
+  }
+}
+
+class SocialFeed extends React.Component {
+  render() {
+    return (
+      <SafeAreaView>
+        <Text>SocialFeed</Text>
+      </SafeAreaView>
+    );
+  }
+}
+
+class Profile extends React.Component {
+  render() {
+    return (
+      <SafeAreaView>
+        <Text>Profile</Text>
+      </SafeAreaView>
+    );
+  }
+}
+
+const Tabs = createBottomTabNavigator(
+  {
+    Learning: LearningDashboard,
+    Projects: Projects,
+    Search: Search,
+    Social: SocialFeed,
+    Profile: Profile
+  },
+  {
+    navigationOptions: ({ navigation }) => ({
+      tabBarIcon: ({ focused, tintColor }) => {
+        const { routeName } = navigation.state;
+        const footerIconsMap = {
+          Learning: "md-list",
+          Projects: "md-bulb",
+          Search: "md-search",
+          Social: "logo-rss",
+          Profile: "md-person"
+        };
+
+        // You can return any component that you like here! We usually use an
+        // icon component from react-native-vector-icons
+        return (
+          <Ionicons
+            name={footerIconsMap[routeName]}
+            size={25}
+            color={tintColor}
+          />
+        );
+      }
+    }),
+    tabBarOptions: {
+      activeTintColor: "black",
+      inactiveTintColor: "gray"
+    }
+  }
+);
+
+export default class App extends Component {
+  constructor(props) {
+    super(props);
+  }
+
+  render() {
+    return <Tabs />;
+  }
+}
+
+const styles = StyleSheet.create({
+  newItemBtn: {
+    backgroundColor: "#3D6DCC",
+    width: 300,
+    height: 45,
+    borderColor: "transparent",
+    borderWidth: 0,
+    borderRadius: 100,
+    margin: 13
+  },
+  centerHeader: { color: "#fff", height: 80 }
+});
