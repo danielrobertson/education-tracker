@@ -1,16 +1,13 @@
-import React, { Component } from "react";
-import { StyleSheet, SafeAreaView, View, Navigator, List } from "react-native";
-import { createBottomTabNavigator } from "react-navigation";
+import React from "react";
+import { StyleSheet, View } from "react-native";
 import { ListItem, Button } from "react-native-elements";
 const styles = StyleSheet.create({
   newItemBtn: {
     backgroundColor: "#3D6DCC",
-    width: 300,
-    height: 45,
     borderColor: "transparent",
     borderWidth: 0,
     borderRadius: 100,
-    margin: 13
+    marginTop: 10
   },
   centerHeader: { color: "#fff", fontSize: 23 }
 });
@@ -41,7 +38,9 @@ export default class LearningItems extends React.Component {
           );
         })}
 
-        <Button title="New" buttonStyle={styles.newItemBtn} />
+        <View>
+          <Button title="New" fontSize={16} buttonStyle={styles.newItemBtn} />
+        </View>
       </View>
     );
   }

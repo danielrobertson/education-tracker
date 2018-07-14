@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import { StyleSheet, SafeAreaView, View, Navigator, List } from "react-native";
 import { Header } from "react-native-elements";
 import LearningItems from "./LearningItems";
