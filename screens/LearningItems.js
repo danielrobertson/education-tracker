@@ -1,16 +1,6 @@
 import React from "react";
 import { StyleSheet, View } from "react-native";
 import { ListItem, Button } from "react-native-elements";
-const styles = StyleSheet.create({
-  newItemBtn: {
-    backgroundColor: "#3D6DCC",
-    borderColor: "transparent",
-    borderWidth: 0,
-    borderRadius: 100,
-    marginTop: 10
-  },
-  centerHeader: { color: "#fff", fontSize: 23 }
-});
 
 // Renders a list of education tasks
 export default class LearningItems extends React.Component {
@@ -37,10 +27,6 @@ export default class LearningItems extends React.Component {
             />
           );
         })}
-
-        <View>
-          <Button title="New" fontSize={16} buttonStyle={styles.newItemBtn} />
-        </View>
       </View>
     );
   }
