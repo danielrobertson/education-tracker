@@ -1,6 +1,6 @@
 # Education Tracker
 
-A React Native mobile app for keeping track of learning progress and coding side projects with a social twist.
+A React Native mobile app for keeping track of learning progress such as books, podcast, and videos, and coding side projects with a social twist.
 
 In developement.
 
