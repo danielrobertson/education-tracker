@@ -1,27 +1,29 @@
 import React from "react";
-import { StyleSheet, SafeAreaView, View, Navigator, List } from "react-native";
+import { StyleSheet, SafeAreaView } from "react-native";
 import { Header } from "react-native-elements";
 import LearningItems from "./LearningItems";
 const config = require("../firebase-config.json");
 import firebase from "firebase";
-import "firebase/firestore";
+import "firebase/firestore/dist/index.cjs";
 import ActionButton from "react-native-action-button";
+
 firebase.initializeApp(config);
 const db = firebase.firestore();
 const settings = { timestampsInSnapshots: true };
 db.settings(settings);
-import Icon from "react-native-vector-icons/Ionicons";
 
 const styles = StyleSheet.create({
   centerHeader: { color: "#fff", fontSize: 23 }
 });
 
-export default class LearningScreen extends React.Component {
+export default class LearningTab extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       tasks: []
     };
+
+    this.handleAddTaskButtonPress = this.handleAddTaskButtonPress.bind(this);
   }
 
   componentDidMount() {
@@ -29,6 +31,11 @@ export default class LearningScreen extends React.Component {
     db.collection("tasks").onSnapshot(snapshot => {
       this.setState({ tasks: snapshot.docs.map(d => d.data()) });
     });
+  }
+
+  // on add task button press, render a new task input screen
+  handleAddTaskButtonPress() {
+    console.log("pressed");
   }
 
   render() {
@@ -44,9 +51,7 @@ export default class LearningScreen extends React.Component {
         <LearningItems tasks={this.state.tasks} />
         <ActionButton
           buttonColor="#3D6DCC"
-          onPress={() => {
-            console.log("button press");
-          }}
+          onPress={this.handleAddTaskButtonPress}
         />
       </SafeAreaView>
     );

@@ -1,8 +1,8 @@
-import React from "react";
+import React, { Component } from "react";
 import { SafeAreaView } from "react-native";
 import { Header } from "react-native-elements";
 
-export default class SocialFeedScreen extends React.Component {
+export default class ProjectsTab extends React.Component {
   constructor(props) {
     super(props);
   }
@@ -12,7 +12,7 @@ export default class SocialFeedScreen extends React.Component {
         <Header
           outerContainerStyles={{ backgroundColor: "#3D6DCC" }}
           centerComponent={{
-            text: "Social",
+            text: "Projects",
             style: { color: "#fff", fontSize: 23 }
           }}
         />

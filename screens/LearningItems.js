@@ -1,6 +1,6 @@
 import React from "react";
-import { StyleSheet, View } from "react-native";
-import { ListItem, Button } from "react-native-elements";
+import { View } from "react-native";
+import { ListItem } from "react-native-elements";
 
 // Renders a list of education tasks
 export default class LearningItems extends React.Component {

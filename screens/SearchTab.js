@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { SafeAreaView } from "react-native";
 import { Header } from "react-native-elements";
 
-export default class AccountScreen extends React.Component {
+export default class SearchTab extends React.Component {
   constructor(props) {
     super(props);
   }
@@ -12,7 +12,7 @@ export default class AccountScreen extends React.Component {
         <Header
           outerContainerStyles={{ backgroundColor: "#3D6DCC" }}
           centerComponent={{
-            text: "Account",
+            text: "Search",
             style: { color: "#fff", fontSize: 23 }
           }}
         />

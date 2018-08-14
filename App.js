@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import { Ionicons } from "react-native-vector-icons";
 import { createBottomTabNavigator } from "react-navigation";
-import ProjectsScreen from "./screens/ProjectsScreen";
-import SearchScreen from "./screens/SearchScreen";
-import SocialFeedScreen from "./screens/SocialFeedScreen";
-import AccountScreen from "./screens/AccountScreen";
-import LearningScreen from "./screens/LearningScreen";
+import ProjectsTab from "./screens/ProjectsTab";
+import SearchTab from "./screens/SearchTab";
+import SocialFeedTab from "./screens/SocialFeedTab";
+import AccountTab from "./screens/AccountTab";
+import LearningTab from "./screens/LearningScreen";
 
 export default class App extends Component {
   constructor(props) {
@@ -16,11 +16,11 @@ export default class App extends Component {
     // footer tabs with icons
     const Tabs = createBottomTabNavigator(
       {
-        Learning: LearningScreen,
-        Projects: ProjectsScreen,
-        Social: SocialFeedScreen,
-        Search: SearchScreen,
-        Account: AccountScreen
+        Learning: LearningTab,
+        Projects: ProjectsTab,
+        Social: SocialFeedTab,
+        Search: SearchTab,
+        Account: AccountTab
       },
       {
         navigationOptions: ({ navigation }) => ({
